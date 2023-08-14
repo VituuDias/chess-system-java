@@ -1,8 +1,8 @@
 package boardgame;
 
-public class Piece {
+public abstract class Piece {
 	protected Position position;
-	
+
 	private Board board;
 
 	public Piece(Board board) {
@@ -14,5 +14,22 @@ public class Piece {
 		return board;
 	}
 
-	
+	public abstract boolean[][] possibleMoves();
+
+	public boolean possibleMovie(Position position) {
+		return possibleMoves()[position.getRow()][position.getcolumn()];
+	}
+
+	public boolean isThereAnyPossibleMoves() {
+		boolean[][] mat = possibleMoves();
+		for (int i = 0; i < mat.length; i++) {
+			for (int j = 0; j < mat.length; j++) {
+				if (mat[i][j]) {
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+
 }
